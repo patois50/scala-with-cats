@@ -21,3 +21,10 @@ object PrintableInstances {
     override def format(a: Int): String = s"Int - ${a.toString}"
   }
 }
+
+object PrintableSyntax {
+  implicit class PrintableOps[A](a: A) {
+    def format(implicit p: Printable[A]): String = p.format(a)
+    def print(implicit p: Printable[A]): Unit = println(p.format(a))
+  }
+}
